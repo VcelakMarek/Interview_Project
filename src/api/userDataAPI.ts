@@ -34,3 +34,17 @@ export const fetchUserData = ({ userName }: Props) => {
 
   return { data, isFetching, handleSearch };
 };
+
+export const fetchUserRepos = () => {
+  const { userData } = useContext(UserDataContext);
+  const { isPending, error, data, isFetching } = useQuery(
+    ["userRepo", userName],
+    () => GET(userData.login, repos)
+  );
+
+  if (isPending) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
+  return { data, isFetching };
+};
