@@ -14,7 +14,8 @@ export default defineConfig({
       "types": resolve(root, "types"),
       "components": resolve(root, "components"),
       "context": resolve(root, "context"),
-      "api": resolve(root, "api")
+      "api": resolve(root, "api"),
+      "connectors": resolve(root, "connectors")
     },
   },
 });

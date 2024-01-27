@@ -10,7 +10,8 @@
       "types/*": ["./src/types/*"],
       "components/*": ["./src/components/*"],
       "context/*": ["./src/context/*"],
-      "api/*": ["./src/api/*"]
+      "api/*": ["./src/api/*"],
+      "connectors/*": ["./src/connectors/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
