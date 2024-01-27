@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AppBar, Button, TextField } from "@mui/material";
+import { AppBar, Button, TextField, CircularProgress } from "@mui/material";
 import { fetchUserData } from "api/userDataAPI";
 
 type Props = {
@@ -16,6 +16,7 @@ const SearchBar = () => {
   return (
     <AppBar
       sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+      position="static"
       color="transparent"
     >
       <TextField
@@ -27,7 +28,7 @@ const SearchBar = () => {
         }}
       />
       <Button variant="contained" onClick={handleSearch}>
-        Search
+        {!isFetching ? "Search" : <CircularProgress color="inherit" />}
       </Button>
     </AppBar>
   );
