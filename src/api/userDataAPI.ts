@@ -1,50 +1,61 @@
-import { useContext } from "react";
 import { GET } from "connectors/fetch";
 import { useQuery } from "@tanstack/react-query";
-import { UserDataContext } from "context/userData.context";
+import useUserDataContext from "context/useUserDataContext";
 
 type Props = {
   userName: string;
 };
 
 export const fetchUserData = ({ userName }: Props) => {
-  const { setUserData } = useContext(UserDataContext);
-  const { isPending, error, data, isFetching } = useQuery(
-    ["userData", userName],
+  const { setUserInfo, setUserRepos, setUserOrgs } = useUserDataContext();
+  const { isFetching: userInfoIsFetching } = useQuery(
+    ["userInfo", userName],
     () => GET(userName),
     {
-      enabled: false, // Disable automatic fetching
-      onSuccess: (data) => {
-        setUserData(data);
+      onSuccess: (userInfo) => {
+        setUserInfo(userInfo);
       },
     }
   );
 
-  if (isPending) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
-
-  const handleSearch = async () => {
-    await refetch();
-  };
-
-  const { refetch } = useQuery(["userData", userName], () => GET(userName), {
-    enabled: false, // Disable automatic fetching
-  });
-
-  return { data, isFetching, handleSearch };
-};
-
-export const fetchUserRepos = () => {
-  const { userData } = useContext(UserDataContext);
-  const { isPending, error, data, isFetching } = useQuery(
-    ["userRepo", userName],
-    () => GET(userData.login, repos)
+  const { isFetching: userReposIsFetching } = useQuery(
+    ["userRepos", userName],
+    () => GET(userName, true),
+    {
+      onSuccess: (userRepos) => {
+        console.log("repos", userRepos);
+        setUserRepos(userRepos);
+      },
+    }
   );
 
-  if (isPending) return "Loading...";
+  const { isFetching: userOrgsIsFetching } = useQuery(
+    ["userOrgs", userName],
+    () => GET(userName, false, true),
+    {
+      onSuccess: (userOrgs) => {
+        console.log("orgs", userOrgs);
+        setUserOrgs(userOrgs);
+      },
+    }
+  );
 
-  if (error) return "An error has occurred: " + error.message;
+  const isFetching =
+    userInfoIsFetching || userReposIsFetching || userOrgsIsFetching;
 
-  return { data, isFetching };
+  const handleSearch = async () => {
+    await refetchUserInfo();
+    await refetchUserRepos();
+    await refetchUserOrgs();
+  };
+
+  const { refetch: refetchUserInfo } = useQuery(["userInfo", userName]);
+  const { refetch: refetchUserRepos } = useQuery(["userRepos", userName], () =>
+    GET(userName, true)
+  );
+  const { refetch: refetchUserOrgs } = useQuery(["userOrgs", userName], () =>
+    GET(userName, false, true)
+  );
+
+  return { isFetching, handleSearch };
 };
