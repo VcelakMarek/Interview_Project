@@ -27,7 +27,7 @@ const SearchBar = () => {
           setUserName(e.target.value);
         }}
       />
-      <Button variant="contained" onClick={handleSearch}>
+      <Button variant="contained" disabled={!userName} onClick={handleSearch}>
         {!isFetching ? "Search" : <CircularProgress color="inherit" />}
       </Button>
     </AppBar>
