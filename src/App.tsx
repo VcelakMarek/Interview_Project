@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import GithubFinder from "components/GithubFinder";
-import UserDataProvider from "context/userData.context";
+import UserDataProvider from "context/UserDataProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const App = () => {
