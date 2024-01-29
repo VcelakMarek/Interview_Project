@@ -1,4 +1,4 @@
-import useUserDataContext from "components/useUserDataContext";
+import useUserDataContext from "context/useUserDataContext";
 import { Box, Card, List, ListItem, ListItemText, Link } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
