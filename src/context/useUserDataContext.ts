@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserDataContext } from "context/userDataContext";
 
-const useUserDataContext = () => {
+export const useUserDataContext = () => {
   const context = useContext(UserDataContext);
 
   if (!context) {
@@ -12,5 +12,3 @@ const useUserDataContext = () => {
 
   return context;
 };
-
-export default useUserDataContext;
