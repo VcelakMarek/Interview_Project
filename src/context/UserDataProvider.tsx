@@ -1,11 +1,11 @@
 import { ReactNode, useState } from "react";
 import type {
   UserData,
-  UserInfoTypes,
-  UserReposTypes,
-  UserOrgsTypes,
+  UserInfo,
+  UserRepository,
+  UserOrganization,
 } from "types/userDataTypes";
-import { UserDataContext } from "context/userDataContext";
+import { Context, UserDataContext } from "context/userDataContext";
 
 type Props = {
   children: ReactNode;
@@ -14,25 +14,25 @@ type Props = {
 const UserDataProvider = ({ children }: Props) => {
   const [userData, setUserData] = useState<UserData>({
     userInfo: {},
-    userRepos: {},
-    userOrgs: {},
+    userRepos: [],
+    userOrgs: [],
   });
 
   const { userInfo, userRepos, userOrgs } = userData;
 
-  const setUserInfo = (userInfo: Partial<UserInfoTypes>) => {
+  const setUserInfo = (userInfo: UserInfo) => {
     setUserData((prev) => ({ ...prev, userInfo }));
   };
 
-  const setUserRepos = (userRepos: Partial<UserReposTypes>) => {
+  const setUserRepos = (userRepos: UserRepository[]) => {
     setUserData((prev) => ({ ...prev, userRepos }));
   };
 
-  const setUserOrgs = (userOrgs: Partial<UserOrgsTypes>) => {
+  const setUserOrgs = (userOrgs: UserOrganization[]) => {
     setUserData((prev) => ({ ...prev, userOrgs }));
   };
 
-  const contextValue = {
+  const contextValue: Context = {
     userData,
     userInfo,
     userRepos,
