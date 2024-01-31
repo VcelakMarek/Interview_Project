@@ -1,7 +1,7 @@
 import { Box, Container } from "@mui/material";
 import SearchBar from "components/SearchBar";
 import UserInfo from "components/UserInfo";
-import UserDetails from "/components/UserDetails";
+import UserDetails from "components/UserDetails";
 
 const GithubFinder = () => {
   return (
