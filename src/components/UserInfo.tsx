@@ -1,18 +1,21 @@
-import useUserDataContext from "context/useUserDataContext";
 import { Box, Card, List, ListItem, ListItemText, Link } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { useUserDataContext } from "context/useUserDataContext";
 
 const UserInfo = () => {
-  const { userData } = useUserDataContext();
-  const { userInfo } = userData;
+  const { userInfo } = useUserDataContext();
+
+  if (!Object.keys(userInfo).length) {
+    return null;
+  }
 
   return (
     <Box>
-      <Card sx={{ width: 345 }}>
+      <Card>
         <CardMedia
-          sx={{ height: 345, width: 345 }}
+          sx={{ height: "21rem", width: "21rem" }}
           image={userInfo?.avatar_url}
           title={`${userInfo?.name}_profile_picture`}
           component="img"
@@ -38,7 +41,12 @@ const UserInfo = () => {
             </ListItem>
 
             <ListItem disablePadding>
-              <Link href={userInfo?.blog} color="inherit">
+              <Link
+                href={userInfo?.blog}
+                color="inherit"
+                rel="noopener"
+                target="_blank"
+              >
                 {userInfo?.blog}
               </Link>
             </ListItem>
