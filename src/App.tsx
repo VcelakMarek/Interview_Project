@@ -1,10 +1,17 @@
 import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import GithubFinder from "components/GithubFinder";
 import UserDataProvider from "context/UserDataProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const App = () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+        enabled: false, // Disable automatic fetching globally
+      },
+    },
+  });
 
   return (
     <>
