@@ -1,6 +1,11 @@
 import { GET } from "connectors/fetch";
 import { useQuery } from "@tanstack/react-query";
-import useUserDataContext from "context/useUserDataContext";
+import { useUserDataContext } from "context/useUserDataContext";
+import type {
+  UserInfo,
+  UserOrganization,
+  UserRepository,
+} from "types/userDataTypes";
 
 type Props = {
   userName: string;
@@ -8,11 +13,12 @@ type Props = {
 
 export const fetchUserData = ({ userName }: Props) => {
   const { setUserInfo, setUserRepos, setUserOrgs } = useUserDataContext();
+
   const { isFetching: userInfoIsFetching } = useQuery(
     ["userInfo", userName],
     () => GET(userName),
     {
-      onSuccess: (userInfo) => {
+      onSuccess: (userInfo: UserInfo) => {
         setUserInfo(userInfo);
       },
     }
@@ -22,7 +28,7 @@ export const fetchUserData = ({ userName }: Props) => {
     ["userRepos", userName],
     () => GET(userName, true),
     {
-      onSuccess: (userRepos) => {
+      onSuccess: (userRepos: UserRepository[]) => {
         console.log("repos", userRepos);
         setUserRepos(userRepos);
       },
@@ -33,7 +39,7 @@ export const fetchUserData = ({ userName }: Props) => {
     ["userOrgs", userName],
     () => GET(userName, false, true),
     {
-      onSuccess: (userOrgs) => {
+      onSuccess: (userOrgs: UserOrganization[]) => {
         console.log("orgs", userOrgs);
         setUserOrgs(userOrgs);
       },
