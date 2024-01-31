@@ -29,7 +29,6 @@ export const fetchUserData = ({ userName }: Props) => {
     () => GET(userName, true),
     {
       onSuccess: (userRepos: UserRepository[]) => {
-        console.log("repos", userRepos);
         setUserRepos(userRepos);
       },
     }
@@ -40,7 +39,6 @@ export const fetchUserData = ({ userName }: Props) => {
     () => GET(userName, false, true),
     {
       onSuccess: (userOrgs: UserOrganization[]) => {
-        console.log("orgs", userOrgs);
         setUserOrgs(userOrgs);
       },
     }

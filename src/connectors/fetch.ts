@@ -10,6 +10,5 @@ export const GET = async <T>(
       repos ? "/repos" : orgs ? "/orgs" : ""
     }`
   );
-  console.log(data);
   return data;
 };
