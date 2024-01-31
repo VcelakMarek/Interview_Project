@@ -1,6 +1,8 @@
 import { Link, Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { useUserDataContext } from "context/useUserDataContext";
 
 const Repository = () => {
@@ -59,7 +61,7 @@ const Repository = () => {
                           rel="noopener"
                           component="a"
                         >
-                          URL
+                          <FontAwesomeIcon icon={faLink} />
                         </Link>
                       ) : (
                         <Typography variant="body1">{value}</Typography>
