@@ -1,14 +1,19 @@
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import SearchBar from "components/SearchBar";
 import UserInfo from "components/UserInfo";
-import UserDetails from "./UserDetails";
+import UserDetails from "/components/UserDetails";
 
 const GithubFinder = () => {
   return (
-    <Container>
+    <Container
+      maxWidth="xl"
+      sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+    >
       <SearchBar />
-      <UserInfo />
-      <UserDetails />
+      <Box sx={{ display: "flex", gap: "1rem" }}>
+        <UserInfo />
+        <UserDetails />
+      </Box>
     </Container>
   );
 };
