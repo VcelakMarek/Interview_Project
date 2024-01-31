@@ -56,7 +56,7 @@ As part of the hiring process, the goal was to showcase proficiency in building 
 
 ## Deployment
 
-The project is deployed on [GitHub Pages](vcelakmarek.github.io/Interview_Project/)
+The project is deployed on [GitHub Pages](https://vcelakmarek.github.io/Interview_Project/)
 
 ## Author
 
