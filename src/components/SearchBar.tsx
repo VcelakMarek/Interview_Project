@@ -2,20 +2,21 @@ import { useState } from "react";
 import { AppBar, Button, TextField, CircularProgress } from "@mui/material";
 import { fetchUserData } from "api/userDataAPI";
 
-type Props = {
-  isFetching: boolean;
-  handleSearch: () => void;
-};
-
 const SearchBar = () => {
   const [userName, setUserName] = useState("");
-  const { isFetching, handleSearch }: Props = fetchUserData({
+  const { isFetching, handleSearch } = fetchUserData({
     userName,
   });
 
   return (
     <AppBar
-      sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        gap: "1rem",
+        padding: "0.5rem",
+      }}
       position="static"
       color="transparent"
     >
