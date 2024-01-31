@@ -1,16 +1,20 @@
 import { createContext } from "react";
 import type {
   UserData,
-  UserInfoTypes,
-  UserReposTypes,
-  UserOrgsTypes,
+  UserInfo,
+  UserOrganization,
+  UserRepository,
 } from "types/userDataTypes";
 
-type Context = {
-  userInfo: UserInfoTypes;
-  userRepos: UserReposTypes;
-  userOrgs: UserOrgsTypes;
+export type Context = {
+  userData: UserData;
+  userInfo: UserInfo;
+  userRepos: UserRepository[];
+  userOrgs: UserOrganization[];
   setUserData: (data: UserData) => void;
+  setUserInfo: (info: UserInfo) => void;
+  setUserRepos: (repos: UserRepository[]) => void;
+  setUserOrgs: (orgs: UserOrganization[]) => void;
 };
 
 export const UserDataContext = createContext<Context | null>(null);
