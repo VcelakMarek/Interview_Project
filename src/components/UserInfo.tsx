@@ -13,7 +13,15 @@ const UserInfo = () => {
 
   return (
     <Box>
-      <Card>
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row", lg: "column" },
+          alignItems: "center",
+          gap: "1rem",
+          padding: "0.5rem",
+        }}
+      >
         <CardMedia
           sx={{ height: "21rem", width: "21rem" }}
           image={userInfo?.avatar_url}

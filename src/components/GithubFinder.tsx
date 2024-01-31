@@ -7,10 +7,20 @@ const GithubFinder = () => {
   return (
     <Container
       maxWidth="xl"
-      sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      }}
     >
       <SearchBar />
-      <Box sx={{ display: "flex", gap: "1rem" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", lg: "row" },
+          gap: "1rem",
+        }}
+      >
         <UserInfo />
         <UserDetails />
       </Box>
